@@ -7,14 +7,16 @@ os.chdir("H:/vid2esp")
 
 img = cv.imread('rocket-raccoon.jpg', cv.IMREAD_GRAYSCALE)
 assert img is not None, "file could not be read, check with os.path.exists()"
+height, width = img.shape
+print(int(height/2), int(width/2))
+img = cv.resize(img, (int(width/2), int(height/2)))
 edge_full = cv.Canny(img,100,200)
 
-height, width = edge_full.shape
 
-x_start = width/2 - 64
-x_end = width/2 + 63
-y_start = height/2 - 32
-y_end = height/2 + 31
+x_start = int(width/2) - 64
+x_end = int(width/2) + 63
+y_start = int(height/2) - 32
+y_end = int(height/2) + 31
 
 edge = edge_full[y_start:y_end, x_start:x_end]
 
